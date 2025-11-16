@@ -5,23 +5,21 @@ class Solution(object):
         :type t: str
         :rtype: bool
         """
-
+        
         if len(s) != len(t):
             return False
         
-        s_hash = {}
+        s_map = {}
+
         for char in s:
-            s_hash[char] = s_hash.get(char, 0) + 1
+            s_map[char] = s_map.get(char, 0) + 1
         
         for char in t:
-            val = s_hash.get(char, 0)
-            if val == 0:
+            if char not in s_map:
                 return False
-            s_hash[char] = val - 1
+            if s_map.get(char, 0) == 0:
+                return False
+            s_map[char] = s_map[char] - 1
         
         return True
-        
-
-
-        
-        
+            
