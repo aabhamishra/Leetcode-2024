@@ -4,12 +4,12 @@ class Solution(object):
         :type nums: List[int]
         :rtype: bool
         """
-
+        
         unique = set()
+
         for num in nums:
             if num in unique:
                 return True
             unique.add(num)
-        
+
         return False
-        
