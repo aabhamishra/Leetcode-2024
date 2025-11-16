@@ -1,25 +1,27 @@
-class Solution(object):
-    def groupAnagrams(self, strs):
-        """
-        :type strs: List[str]
-        :rtype: List[List[str]]
-        """
-
-        if len(strs) == 0:
-            return [[""]]
-
-        sorted_map = {}
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+                
+        option_map = {}
+        option_lists = {}
 
         for s in strs:
-            sorted_s = "".join(sorted(s))
+            s_map = {}
+            for char in s:
+                s_map[char] = s_map.get(char, 0) + 1
+            option_map[s] = s_map
+        
+        for s in strs:
+            mapped = 0
+            for option in option_lists:
+                if option_map[s] == option_map[option]:
+                    option_lists[option].append(s)
+                    mapped = 1
+                    break
+            if mapped == 0:
+                option_lists[s] = [s]
+        
+        return list(option_lists.values())
 
-            group = sorted_map.get(sorted_s, [])
-            group.append(s)
-            sorted_map[sorted_s] = group
-        
-        res = []
-        for group in sorted_map.values():
-            res.append(group)
-        
-        return res
+            
+
                 
