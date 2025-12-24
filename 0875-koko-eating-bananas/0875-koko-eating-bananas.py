@@ -5,12 +5,18 @@ class Solution:
         # if eating n bananas per hour, ceil(piles[i]/n) for all = h
         # min speed = 1 banana per hour
         # max speed = largest pile per hour
-        
+
         min = 1
         max = 1
+        sum = 0
         for pile in piles:
             max = pile if pile > max else max
-        
+            sum += pile
+        if sum <= h:
+            return 1
+        if max == len(piles):
+            return max
+
         while min < max:
             if min == max:
                 return min
@@ -27,7 +33,5 @@ class Solution:
                 max = mid
 
         return min
-                
-
 
 
